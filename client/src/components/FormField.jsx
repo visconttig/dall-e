@@ -1,10 +1,15 @@
 
 
-const FormField = () => {
+const FormField = ({labelName, type, name, placeholder, value, handleChange, isSurpriseMe,
+    handleSurpriseMe}) => {
 
     return (
         <div>
-            Form Field
+            <div className="flex items-center mb-2 gap-2" >
+                <label htmlFor={name} className="block text-sm font-medium text-gray-900" >
+                    {labelName}
+                </label>
+            </div>
         </div>
     );
 }
