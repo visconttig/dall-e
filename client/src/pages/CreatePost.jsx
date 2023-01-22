@@ -23,10 +23,15 @@ const CreatePost = () => {
     }
 
     const handleChange = (e) => {
-        setForm({});
+        setForm({...form, [e.target.name]: e.target.value});
     }
 
     const handleSurpriseMe = () => {
+        const randomPrompt = getRandomPrompt(form.prompt);
+        setForm({...form, prompt: randomPrompt});
+    }
+
+    const generateImage = (e) => {
         return;
     }
 
@@ -55,7 +60,7 @@ const CreatePost = () => {
                         value={form.prompt}
                         handleChange={handleChange}
                         isSurpriseMe
-                        handleSurpriseMe />
+                        handleSurpriseMe={handleSurpriseMe} />
                 </div>
 
                 <div className="relative bg-gray-50 border border-gray-300
@@ -78,7 +83,26 @@ const CreatePost = () => {
                             </div>
                         )}
                 </div>
-
+                <div className="mt-5 flex gap-5" >
+                    <button 
+                        type="button"
+                        onClick={generateImage} 
+                        className="text-white bg-green-700 font-medium rounded-md
+                            text-sm w-full sm:w-auto px-5 py-2.5 text-center" > 
+                        {generatingImg ? (
+                            "Generating..."
+                        ) : ("Generate")}
+                    </button>
+                </div>
+                <div className="mt-10" >
+                    <p className="mt-2 text-[#666e75] text-[14px]" >Once you have created the image you want, you can share it with others in the community</p>
+                </div>
+                <button 
+                    type="submit" 
+                    className="text-white mt-3 bg-[#6469ff] font-medium rounded-md text-sm 
+                        w-full sm:w-auto px-5 py-2.5 text-center" >
+                        {loading ? ("Sharing...") : ("Share with the community")}
+                </button>
             </form>
         </section>
     );
