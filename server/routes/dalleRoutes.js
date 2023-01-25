@@ -7,7 +7,7 @@ dotenv.config();
 
 const router = express.Router();
 
-const configuration = new configuration({
+const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY
 });
 
@@ -32,7 +32,8 @@ router.route("/").post(async (req, res) => {
         res.status(200).json({photo: image});
 
     } catch (error) {
-        res.status(500).send(error?.response.data.error.mesage);
+        throw new Error(error.mesage);
+        // res.status(500).send(error?.response.data.error.mesage);
     }
 })
 
